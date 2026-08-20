@@ -1,8 +1,9 @@
+import csv
+
 print("Welcome to the program!")
 
-def container_calculations():
-    port_capacity = float(input("Enter the maximum storage capacity of the \
-port: "))
+def container():
+    port_capacity = float(input("Enter the maximum storage capacity of the port: "))
     container_amount = int(input("Enter the number of containers: "))
     container_weights = []
     for i in range(container_amount):
@@ -22,6 +23,16 @@ port: "))
         shipment_weight += weight
     average_container_weight = shipment_weight / container_amount
     
+    if shipment_weight >= 200:
+        classification = "Heavy"
+    else:
+        classification = "Light"
+    
+    if shipment_weight <= port_capacity:
+        can_unload = True
+    else:
+        can_unload = False
+    
     def output():
         print("\nOutput")
         print("========================================")
@@ -29,16 +40,11 @@ port: "))
         print(f"Average Container Weight: {average_container_weight}")
         print(f"Heaviest Container: {heaviest_container_weight}")
         print(f"Lightest Container: {lightest_container_weight}")
-        if shipment_weight >= 200.0:
-            print("Classification: Heavy")
-        else:
-            print("Classification: Light")
+        print(f"Classification: {classification}")
         print(f"Port Capacity: {port_capacity}")
-        if shipment_weight <= port_capacity:
+        if can_unload:
             print("Status: Shipment can be unloaded")
         else:
             print("Status: Shipment exceeds port capacity")
     
     output()
-
-container_calculations()
