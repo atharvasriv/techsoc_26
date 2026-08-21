@@ -42,12 +42,17 @@ def container():
     shipment_info.append(shipment_data)
     
     # using bubble sort
+    sorted_list = container_weights.copy()
+    for i in range(len(sorted_list)):
+        for j in range(len(sorted_list) - i - 1):
+            if sorted_list[j] < sorted_list[j+1]:
+                sorted_list[j], sorted_list[j+1] = sorted_list[j+1], sorted_list[j]
+    
+    def k_heaviest():
+        usr_ind = int(input("Enter the value of k: "))
+        print(f"The Kth heaviest container is: {sorted_list[usr_ind-1]}")
+    
     def sort_display():
-        sorted_list = container_weights.copy()
-        for i in range(len(sorted_list)):
-            for j in range(len(sorted_list) - i - 1):
-                if sorted_list[j] < sorted_list[j+1]:
-                    sorted_list[j], sorted_list[j+1] = sorted_list[j+1], sorted_list[j]
         print("The container weights in order are as follows: ")
         print(sorted_list)
         
@@ -71,21 +76,22 @@ def container():
         else:
             print("Status: Shipment exceeds port capacity")
     
-    print("Choices:\n1. Give Output\n2. Save to File\n3. Display Sorted Weights")
-    output_choice = input("Enter choice (number only): ")
-     
-    def select_choice():
+    print("Choices:\n1. Give Output\n2. Save to File\n3. Display Sorted Weights\n4. Kth Heaviest")
+    
+    # def select_choice():
+    
+    choose_options = 'y'
+    
+    while True:
+        output_choice = input("Enter choice (number only): ")
         if output_choice == 1:
             output()
         elif output_choice == 2:
             save_to_file()
         elif output_choice == 3:
             sort_display()
-    
-    choose_options = 'y'
-    
-    while True:
-        select_choice()
+        elif output_choice == 4:
+            k_heaviest()
         choose_options = input("Do you want to choose anything else? (y/n): ")
         if choose_options.lower() == 'n':
             break
