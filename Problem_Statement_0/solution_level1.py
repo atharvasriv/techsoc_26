@@ -1,5 +1,3 @@
-import csv
-
 print("Welcome to the program!")
 
 def container():
